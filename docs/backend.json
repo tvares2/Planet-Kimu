@@ -1,0 +1,559 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user account for the Forever Yours application.",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Unique identifier for the User entity, from Firebase Auth."
+        },
+        "email": {
+          "type": "string",
+          "description": "The user's email address.",
+          "format": "email"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the user account was created.",
+          "format": "date-time"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "The user's display name."
+        },
+        "username": {
+          "type": "string",
+          "description": "The user's chosen username."
+        },
+        "nicknames": {
+          "type": "string",
+          "description": "User's nicknames, comma-separated."
+        },
+        "hobby": {
+          "type": "string",
+          "description": "User's hobby."
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "User's phone number."
+        },
+        "description": {
+          "type": "string",
+          "description": "A short description about the user."
+        },
+        "partnerId": {
+          "type": "string",
+          "description": "The UID of the connected partner."
+        }
+      },
+      "required": [
+        "uid",
+        "email",
+        "createdAt"
+      ]
+    },
+    "Message": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Message",
+      "type": "object",
+      "description": "Represents a message exchanged between users.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Message entity."
+        },
+        "senderId": {
+          "type": "string",
+          "description": "Reference to User who sent the message. (Relationship: User 1:N Message (as sender))"
+        },
+        "receiverId": {
+          "type": "string",
+          "description": "Reference to User who is the recipient of the message. (Relationship: User 1:N Message (as receiver))"
+        },
+        "content": {
+          "type": "string",
+          "description": "The text content of the message."
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Timestamp indicating when the message was sent.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "senderId",
+        "receiverId",
+        "content",
+        "timestamp"
+      ]
+    },
+    "StoryTimelineEvent": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "StoryTimelineEvent",
+      "type": "object",
+      "description": "Represents an event in the story timeline.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the StoryTimelineEvent entity."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the timeline event."
+        },
+        "description": {
+          "type": "string",
+          "description": "A more detailed description of the timeline event."
+        },
+        "date": {
+          "type": "string",
+          "description": "The date associated with the timeline event.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "date"
+      ]
+    },
+    "Letter": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Letter",
+      "type": "object",
+      "description": "Represents a heartfelt letter.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Letter entity."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the letter."
+        },
+        "content": {
+          "type": "string",
+          "description": "The content of the letter."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "content"
+      ]
+    },
+    "Reason": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Reason",
+      "type": "object",
+      "description": "Represents a reason why you choose her.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Reason entity."
+        },
+        "text": {
+          "type": "string",
+          "description": "The text of the reason."
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ]
+    },
+    "Promise": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Promise",
+      "type": "object",
+      "description": "Represents a promise made.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Promise entity."
+        },
+        "text": {
+          "type": "string",
+          "description": "The text of the promise."
+        },
+        "explanation": {
+          "type": "string",
+          "description": "An explanation of the promise."
+        }
+      },
+      "required": [
+        "id",
+        "text",
+        "explanation"
+      ]
+    },
+    "Thing": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Thing",
+      "type": "object",
+      "description": "Represents a thing to tell but never did.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Thing entity."
+        },
+        "text": {
+          "type": "string",
+          "description": "The text of the thing."
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ]
+    },
+    "FutureDream": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "FutureDream",
+      "type": "object",
+      "description": "Represents a future dream.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the FutureDream entity."
+        },
+        "text": {
+          "type": "string",
+          "description": "The text of the future dream."
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ]
+    },
+    "JournalEntry": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Journal Entry",
+      "type": "object",
+      "description": "Represents a shared journal entry for a specific day.",
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "The date of the journal entry in YYYY-MM-DD format."
+        },
+        "content": {
+          "type": "string",
+          "description": "The shared text content of the journal entry."
+        },
+        "authorId": {
+          "type": "string",
+          "description": "The ID of the user who last updated the entry."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of the last update."
+        }
+      },
+      "required": [
+        "date",
+        "content",
+        "authorId",
+        "updatedAt"
+      ]
+    },
+    "FightLesson": {
+      "title": "Fight Lesson",
+      "type": "object",
+      "description": "Represents a lesson learned from a disagreement or fight.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the FightLesson entity."
+        },
+        "text": {
+          "type": "string",
+          "description": "The text content of the lesson learned."
+        },
+        "authorId": {
+          "type": "string",
+          "description": "The ID of the user who added the lesson."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp indicating when the lesson was added."
+        }
+      },
+      "required": [
+        "id",
+        "text",
+        "authorId",
+        "createdAt"
+      ]
+    },
+    "WeeklyStory": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Weekly Story",
+      "type": "object",
+      "description": "Represents a summarized experience for a specific week.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the WeeklyStory entity."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the weekly story."
+        },
+        "content": {
+          "type": "string",
+          "description": "The summarized content of the week's experience."
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date",
+          "description": "The start date of the week."
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date",
+          "description": "The end date of the week."
+        },
+        "authorId": {
+          "type": "string",
+          "description": "The ID of the user who wrote the story."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp indicating when the story was created."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "content",
+        "startDate",
+        "endDate",
+        "authorId",
+        "createdAt"
+      ]
+    },
+    "LoveMeterClick": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Love Meter Click",
+      "type": "object",
+      "description": "Represents a single click on the 'Love Meter' button.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the click event."
+        },
+        "userId": {
+          "type": "string",
+          "description": "The ID of the user who clicked the button."
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The server timestamp when the click occurred."
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "timestamp"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user profile information. The 'userId' corresponds to the Firebase Authentication UID.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The Firebase Authentication UID of the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/story_timeline_events/{eventId}",
+        "definition": {
+          "entityName": "StoryTimelineEvent",
+          "schema": {
+            "$ref": "#/backend/entities/StoryTimelineEvent"
+          },
+          "description": "Stores events for the story timeline.",
+          "params": [
+            {
+              "name": "eventId",
+              "description": "Unique identifier for the timeline event."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/letters/{letterId}",
+        "definition": {
+          "entityName": "Letter",
+          "schema": {
+            "$ref": "#/backend/entities/Letter"
+          },
+          "description": "Stores heartfelt letters.",
+          "params": [
+            {
+              "name": "letterId",
+              "description": "Unique identifier for the letter."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/reasons/{reasonId}",
+        "definition": {
+          "entityName": "Reason",
+          "schema": {
+            "$ref": "#/backend/entities/Reason"
+          },
+          "description": "Stores reasons why you choose her.",
+          "params": [
+            {
+              "name": "reasonId",
+              "description": "Unique identifier for the reason."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/promises/{promiseId}",
+        "definition": {
+          "entityName": "Promise",
+          "schema": {
+            "$ref": "#/backend/entities/Promise"
+          },
+          "description": "Stores promises made.",
+          "params": [
+            {
+              "name": "promiseId",
+              "description": "Unique identifier for the promise."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/things/{thingId}",
+        "definition": {
+          "entityName": "Thing",
+          "schema": {
+            "$ref": "#/backend/entities/Thing"
+          },
+          "description": "Stores things you want to tell her but never did.",
+          "params": [
+            {
+              "name": "thingId",
+              "description": "Unique identifier for the thing."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/future_dreams/{futureDreamId}",
+        "definition": {
+          "entityName": "FutureDream",
+          "schema": {
+            "$ref": "#/backend/entities/FutureDream"
+          },
+          "description": "Stores future dreams.",
+          "params": [
+            {
+              "name": "futureDreamId",
+              "description": "Unique identifier for the future dream."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/journal/{entryDate}",
+        "definition": {
+          "entityName": "JournalEntry",
+          "schema": {
+            "$ref": "#/backend/entities/JournalEntry"
+          },
+          "description": "Stores a shared journal entry for a specific day. The 'entryDate' is in 'YYYY-MM-DD' format.",
+          "params": [
+            {
+              "name": "entryDate",
+              "description": "The date of the journal entry in YYYY-MM-DD format."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/fight_lessons/{lessonId}",
+        "definition": {
+          "entityName": "FightLesson",
+          "schema": {
+            "$ref": "#/backend/entities/FightLesson"
+          },
+          "description": "Stores lessons learned from disagreements.",
+          "params": [
+            {
+              "name": "lessonId",
+              "description": "Unique identifier for the lesson."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/weekly_stories/{storyId}",
+        "definition": {
+          "entityName": "WeeklyStory",
+          "schema": {
+            "$ref": "#/backend/entities/WeeklyStory"
+          },
+          "description": "Stores weekly story summaries.",
+          "params": [
+            {
+              "name": "storyId",
+              "description": "Unique identifier for the weekly story."
+            }
+          ]
+        }
+      },
+       {
+        "path": "/loveMeterClicks/{clickId}",
+        "definition": {
+          "entityName": "LoveMeterClick",
+          "schema": {
+            "$ref": "#/backend/entities/LoveMeterClick"
+          },
+          "description": "Stores clicks for the Love Meter.",
+          "params": [
+            {
+              "name": "clickId",
+              "description": "Unique identifier for the click event."
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+
+    
